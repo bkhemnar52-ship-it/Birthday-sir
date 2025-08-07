@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Fonts for modern look -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --main-bg: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+      --accent1: #ff6f91;
+      --accent2: #ff9671;
+      --accent3: #ffc75f;
+      --accent4: #f9f871;
+      --accent5: #42caff;
+      --white: #fff;
+      --shadow: 0 4px 32px rgba(0,0,0,0.15);
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      width: 100vw;
+      overflow-x: hidden;
+      background: var(--main-bg);
+      position: relative;
+      font-family: 'Montserrat', Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Confetti Animation */
+    .confetti {
+      pointer-events: none;
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      z-index: 1;
+      overflow: hidden;
+    }
+    .confetti-piece {
+      position: absolute;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      opacity: 0.7;
+      animation: confetti-fall 4s linear infinite;
+    }
+    /* Generate different colors and delays for confetti */
+    .confetti-piece:nth-child(1) { background: var(--accent1); left: 10vw; animation-delay: 0s;}
+    .confetti-piece:nth-child(2) { background: var(--accent2); left: 20vw; animation-delay: 1s;}
+    .confetti-piece:nth-child(3) { background: var(--accent3); left: 30vw; animation-delay: 2s;}
+    .confetti-piece:nth-child(4) { background: var(--accent4); left: 40vw; animation-delay: 0.5s;}
+    .confetti-piece:nth-child(5) { background: var(--accent5); left: 50vw; animation-delay: 1.5s;}
+    .confetti-piece:nth-child(6) { background: var(--accent1); left: 60vw; animation-delay: 2.5s;}
+    .confetti-piece:nth-child(7) { background: var(--accent2); left: 70vw; animation-delay: 0.8s;}
+    .confetti-piece:nth-child(8) { background: var(--accent3); left: 80vw; animation-delay: 1.2s;}
+    .confetti-piece:nth-child(9) { background: var(--accent4); left: 90vw; animation-delay: 2.2s;}
+    .confetti-piece:nth-child(10) { background: var(--accent5); left: 95vw; animation-delay: 1.7s;}
+
+    @keyframes confetti-fall {
+      0% { top: -5vh; transform: rotate(0deg);}
+      100% { top: 105vh; transform: rotate(360deg);}
+    }
+
+    /* Sparkles/Stars */
+    .sparkle {
+      position: absolute;
+      width: 8px; height: 8px;
+      background: radial-gradient(circle, #fff 60%, transparent 100%);
+      opacity: 0.8;
+      border-radius: 50%;
+      animation: sparkle-blink 2s infinite alternate;
+      z-index: 2;
+    }
+    .sparkle:nth-child(1) { top: 10%; left: 15%; animation-delay: 0s;}
+    .sparkle:nth-child(2) { top: 20%; left: 80%; animation-delay: 0.5s;}
+    .sparkle:nth-child(3) { top: 60%; left: 25%; animation-delay: 1s;}
+    .sparkle:nth-child(4) { top: 75%; left: 70%; animation-delay: 1.5s;}
+    .sparkle:nth-child(5) { top: 40%; left: 50%; animation-delay: 0.8s;}
+    .sparkle:nth-child(6) { top: 85%; left: 10%; animation-delay: 1.2s;}
+    .sparkle:nth-child(7) { top: 30%; left: 60%; animation-delay: 0.3s;}
+    .sparkle:nth-child(8) { top: 55%; left: 85%; animation-delay: 1.7s;}
+
+    @keyframes sparkle-blink {
+      0% { opacity: 0.8; transform: scale(1);}
+      100% { opacity: 0.2; transform: scale(1.5);}
+    }
+
+    /* Center Card */
+    .card-container {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-width: 320px;
+      max-width: 90vw;
+      padding: 2.5rem 2rem 3rem 2rem;
+      background: rgba(255,255,255,0.85);
+      border-radius: 2rem;
+      box-shadow: var(--shadow);
+      margin: 2rem;
+    }
+
+    .birthday-message {
+      font-family: 'Pacifico', cursive;
+      font-size: 2.5rem;
+      color: var(--accent1);
+      text-align: center;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 0 12px var(--accent2), 0 2px 8px #fff;
+      animation: bounce-in 1.2s cubic-bezier(.68,-0.55,.27,1.55) both, glow 2s infinite alternate;
+    }
+    @keyframes bounce-in {
+      0% { transform: scale(0.7) translateY(-100px); opacity: 0;}
+      60% { transform: scale(1.1) translateY(20px); opacity: 1;}
+      80% { transform: scale(0.95) translateY(-10px);}
+      100% { transform: scale(1) translateY(0);}
+    }
+    @keyframes glow {
+      0% { text-shadow: 0 0 12px var(--accent2), 0 2px 8px #fff;}
+      100% { text-shadow: 0 0 32px var(--accent3), 0 2px 16px #fff;}
+    }
+
+    /* Balloons */
+    .balloons {
+      position: relative;
+      width: 100%;
+      height: 120px;
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      z-index: 10;
+    }
+    .balloon {
+      width: 48px; height: 64px;
+      position: relative;
+      animation: float 3s ease-in-out infinite;
+    }
+    .balloon:nth-child(2) { animation-delay: 1s;}
+    .balloon:nth-child(3) { animation-delay: 2s;}
+    .balloon-shape {
+      width: 100%; height: 100%;
+      background: var(--accent1);
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      position: absolute;
+      top: 0; left: 0;
+      z-index: 1;
+    }
+    .balloon:nth-child(2) .balloon-shape { background: var(--accent2);}
+    .balloon:nth-child(3) .balloon-shape { background: var(--accent5);}
+    .balloon-knot {
+      position: absolute;
+      bottom: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 12px; height: 10px;
+      background: #fff;
+      border-radius: 50%;
+      z-index: 2;
+    }
+    .balloon-string {
+      position: absolute;
+      bottom: -32px; left: 50%;
+      width: 2px; height: 36px;
+      background: #aaa;
+      border-radius: 1px;
+      transform: translateX(-50%);
+      z-index: 0;
+      opacity: 0.7;
+    }
+    @keyframes float {
+      0% { transform: translateY(0);}
+      50% { transform: translateY(-24px);}
+      100% { transform: translateY(0);}
+    }
+
+    /* Cake Icon */
+    .cake {
+      width: 60px; height: 60px;
+      margin: 0 auto 1.5rem auto;
+      position: relative;
+      animation: cake-pop 2s ease-in-out infinite alternate;
+    }
+    @keyframes cake-pop {
+      0% { transform: translateY(0);}
+      100% { transform: translateY(-10px);}
+    }
+    /* Simple SVG Cake */
+    .cake svg {
+      width: 100%; height: 100%;
+      display: block;
+    }
+
+    /* Button */
+    .surprise-btn {
+      margin-top: 1.5rem;
+      padding: 0.9rem 2.2rem;
+      font-size: 1.2rem;
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: linear-gradient(90deg, var(--accent1), var(--accent2), var(--accent3));
+      color: #fff;
+      border: none;
+      border-radius: 2rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.4s;
+      font-weight: bold;
+      letter-spacing: 1px;
+      outline: none;
+      z-index: 10;
+      position: relative;
+      overflow: hidden;
+    }
+    .surprise-btn:hover, .surprise-btn:focus {
+      transform: scale(1.05);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+      background: linear-gradient(90deg, var(--accent3), var(--accent2), var(--accent1));
+    }
+
+    /* Surprise Popup */
+    #surprise-popup {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.35);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      animation: fade-in 0.5s;
+    }
+    @keyframes fade-in {
+      from { opacity: 0;}
+      to { opacity: 1;}
+    }
+    .popup-content {
+      background: #fff;
+      border-radius: 1.5rem;
+      padding: 2.5rem 2rem;
+      box-shadow: var(--shadow);
+      text-align: center;
+      position: relative;
+      min-width: 260px;
+      max-width: 90vw;
+      animation: popup-bounce 0.7s cubic-bezier(.68,-0.55,.27,1.55);
+    }
+    @keyframes popup-bounce {
+      0% { transform: scale(0.7);}
+      60% { transform: scale(1.1);}
+      80% { transform: scale(0.95);}
+      100% { transform: scale(1);}
+    }
+    .gift-box {
+      width: 80px; height: 80px;
+      margin: 0 auto 1.2rem auto;
+      position: relative;
+      animation: gift-open 1.2s 0.2s forwards;
+      opacity: 0;
+    }
+    #surprise-popup.show .gift-box {
+      opacity: 1;
+    }
+    @keyframes gift-open {
+      0% { transform: scale(0.7) rotate(-10deg);}
+      60% { transform: scale(1.1) rotate(8deg);}
+      80% { transform: scale(0.95) rotate(-4deg);}
+      100% { transform: scale(1) rotate(0);}
+    }
+    .popup-message {
+      font-family: 'Pacifico', cursive;
+      font-size: 2rem;
+      color: var(--accent1);
+      margin-bottom: 0.5rem;
+      text-shadow: 0 0 8px var(--accent2), 0 2px 4px #fff;
+      animation: fade-in 1.2s 0.7s both;
+      opacity: 0;
+    }
+    #surprise-popup.show .popup-message {
+      opacity: 1;
+    }
+    .close-btn {
+      margin-top: 1.2rem;
+      padding: 0.6rem 1.5rem;
+      font-size: 1rem;
+      background: var(--accent2);
+      color: #fff;
+      border: none;
+      border-radius: 1.2rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: bold;
+    }
+    .close-btn:hover, .close-btn:focus {
+      background: var(--accent1);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .card-container {
+        padding: 1.5rem 1rem 2rem 1rem;
+        margin: 1rem;
+      }
+      .birthday-message {
+        font-size: 2rem;
+      }
+      .cake {
+        width: 48px; height: 48px;
+      }
+      .balloons {
+        height: 90px;
+        gap: 14px;
+      }
+      .balloon {
+        width: 36px; height: 50px;
+      }
+    }
+    @media (max-width: 600px) {
+      .card-container {
+        padding: 1.2rem 0.5rem 2rem 0.5rem;
+        margin: 0.5rem;
+      }
+      .birthday-message {
+        font-size: 1.2rem;
+      }
+      .balloons {
+        height: 60px;
+        gap: 6px;
+      }
+      .balloon {
+        width: 22px; height: 30px;
+      }
+      .cake {
+        width: 28px; height: 28px;
+      }
+      .popup-content {
+        padding: 0.7rem 0.2rem;
+      }
+      .gift-box {
+        width: 32px; height: 32px;
+      }
+      .surprise-btn {
+        font-size: 1rem;
+        padding: 0.7rem 1.2rem;
+      }
+    }
+    @media (max-width: 400px) {
+      .card-container {
+        min-width: unset;
+        max-width: 98vw;
+        padding: 0.5rem 0.1rem 1rem 0.1rem;
+      }
+      .birthday-message {
+        font-size: 0.9rem;
+      }
+      .popup-content {
+        padding: 0.3rem 0.1rem;
+      }
+    }
+    @media (min-width: 1200px) {
+      .card-container {
+        max-width: 600px;
+        padding: 3rem 3rem 3.5rem 3rem;
+      }
+      .birthday-message {
+        font-size: 3rem;
+      }
+      .cake {
+        width: 80px; height: 80px;
+      }
+      .balloons {
+        height: 160px;
+        gap: 40px;
+      }
+      .balloon {
+        width: 64px; height: 90px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Confetti -->
+  <div class="confetti" aria-hidden="true">
+    <div class="confetti-piece"></div>
+    <div class="confetti-piece"></div>
+    <div class="confetti-piece"></div>
+    <div class="confetti-piece"></div>
+    <div class="confetti-piece"></div>
+    <div class="confetti-piece"></div>
+    <div class="confetti-piece"></div>
+    <div class="confetti-piece"></div>
+    <div class="confetti-piece"></div>
+    <div class="confetti-piece"></div>
+  </div>
+  <!-- Sparkles/Stars -->
+  <div class="sparkle"></div>
+  <div class="sparkle"></div>
+  <div class="sparkle"></div>
+  <div class="sparkle"></div>
+  <div class="sparkle"></div>
+  <div class="sparkle"></div>
+  <div class="sparkle"></div>
+  <div class="sparkle"></div>
+
+  <div class="card-container">
+    <div class="balloons">
+      <div class="balloon">
+        <div class="balloon-shape"></div>
+        <div class="balloon-knot"></div>
+        <div class="balloon-string"></div>
+      </div>
+      <div class="balloon">
+        <div class="balloon-shape"></div>
+        <div class="balloon-knot"></div>
+        <div class="balloon-string"></div>
+      </div>
+      <div class="balloon">
+        <div class="balloon-shape"></div>
+        <div class="balloon-knot"></div>
+        <div class="balloon-string"></div>
+      </div>
+    </div>
+    <div class="cake">
+      <!-- Simple SVG Cake Icon -->
+      <svg viewBox="0 0 60 60">
+        <ellipse cx="30" cy="50" rx="20" ry="8" fill="#ffc75f"/>
+        <rect x="10" y="25" width="40" height="25" rx="8" fill="#fff"/>
+        <rect x="10" y="40" width="40" height="10" rx="5" fill="#ff6f91"/>
+        <rect x="10" y="35" width="40" height="7" rx="3" fill="#ff9671"/>
+        <rect x="10" y="25" width="40" height="7" rx="3" fill="#f9f871"/>
+        <rect x="27" y="15" width="6" height="12" rx="3" fill="#ff6f91"/>
+        <ellipse cx="30" cy="15" rx="3" ry="3" fill="#ffc75f"/>
+      </svg>
+    </div>
+    <div class="birthday-message">
+      वाढदिवसाच्या मनःपूर्वक शुभेच्छा <span id="name">Nikhil Sir</span>!<br>
+      <span style="font-size:1.1rem; color:#ff9671; font-family:'Montserrat',sans-serif; display:block; margin-top:0.7rem;">
+        कोडिंगच्या जगात backend developer म्हणून आपलं योगदान अमूल्य आहे,<br>
+        पण आमच्या आयुष्यात, Sir, आपली जागा अजूनच खास आहे!<br>
+        आजच्या या खास दिवशी, तुमचं आयुष्य नेहमीच यश, आनंद आणि प्रेमाने उजळून निघो.<br>
+        <span style="color:#ff6f91; font-size:1.2rem;">Wish you a super-cool, stylish, and fun-filled birthday, Sir! 🎂✨<br>आपण नेहमीच आमचे inspiration आहात आणि मित्रही!</span>
+      </span>
+    </div>
+    <button class="surprise-btn" id="surpriseBtn" tabindex="0">Click for a Surprise</button>
+  </div>
+
+  <!-- Surprise Popup -->
+  <div id="surprise-popup">
+    <div class="popup-content">
+      <div class="gift-box">
+        <!-- SVG Gift Box -->
+        <svg viewBox="0 0 80 80">
+          <rect x="10" y="30" width="60" height="40" rx="8" fill="#ff9671"/>
+          <rect x="10" y="30" width="60" height="12" rx="6" fill="#ffc75f"/>
+          <rect x="36" y="30" width="8" height="40" fill="#ff6f91"/>
+          <rect x="20" y="18" width="40" height="18" rx="8" fill="#ff6f91"/>
+          <rect x="36" y="18" width="8" height="18" fill="#ffc75f"/>
+          <ellipse cx="40" cy="18" rx="8" ry="6" fill="#ff6f91"/>
+        </svg>
+      </div>
+      <div class="popup-message">
+        🎁 Nikhil Sir, backend चं logic जितकं strong, तितकंच आमचं तुमच्यावरचं आदर आणि प्रेमही!<br>
+        आजच्या दिवशी तुमच्या सर्व इच्छा पूर्ण होवोत,<br>
+        आणि आमचं हे bond नेहमीच fresh आणि मस्त राहो! 😎<br>
+        <span style="color:#ff6f91; font-size:1.1rem;">Happy Birthday, Sir! You are the best mentor & friend! 🎉💝</span>
+      </div>
+      <button class="close-btn" id="closePopup" tabindex="0">Close</button>
+    </div>
+  </div>
+
+  <!-- Minimal JS for popup (required for interaction) -->
+  <script>
+    // Set your name here
+    document.getElementById('name').textContent = "Nikhil Sir";
+
+    const btn = document.getElementById('surpriseBtn');
+    const popup = document.getElementById('surprise-popup');
+    const closeBtn = document.getElementById('closePopup');
+
+    btn.addEventListener('click', () => {
+      popup.style.display = 'flex';
+      setTimeout(() => popup.classList.add('show'), 10);
+    });
+    closeBtn.addEventListener('click', () => {
+      popup.classList.remove('show');
+      setTimeout(() => popup.style.display = 'none', 400);
+    });
+    // Close popup on outside click
+    popup.addEventListener('click', (e) => {
+      if (e.target === popup) {
+        closeBtn.click();
+      }
+    });
+  </script>
+</body>
+</html>
